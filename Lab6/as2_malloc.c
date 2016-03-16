@@ -58,8 +58,6 @@ void* as2_malloc(allocator_t* mem, size_t size)
 			header_main.next = (allocator_t *)((void *)list+headerSize+size);
 			header_main.ptr_libre = (allocator_t *)((void *)list+headerSize+size);
 			header_main.size = header_main.size - size;
-
-
 		}else{
 			struct nodes *aux;
 
@@ -75,12 +73,7 @@ void* as2_malloc(allocator_t* mem, size_t size)
 						header_main.next = (allocator_t *)((void *)aux->next+headerSize+size);
 						header_main.ptr_libre = (allocator_t *)((void *)aux->next+headerSize+size);
 						header_main.size = header_main.size - size;
-
-
 					}else{
-
-
-
 					}
 				}
 				aux = aux->next;
@@ -97,7 +90,6 @@ void* as2_malloc(allocator_t* mem, size_t size)
 
 	return header_main.next;
 }
-
 
 void as2_free(allocator_t* mem, void* ptr)
 { 
@@ -122,9 +114,6 @@ if (list!=NULL){
 					header_main.size = header_main.size - aux->header.size - headerSize;
 					list->header.ptr_libre=(allocator_t *)((void *)aux->next);
 					list->next=aux->next;
-
-
-
 				}
 			}
 
@@ -139,8 +128,6 @@ if (list!=NULL){
 
 void as2_destroy(allocator_t* mem)
 { 
-
-
 	free(list);
 
 	free(mem);
