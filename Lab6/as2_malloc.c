@@ -41,10 +41,6 @@ allocator_t* as2_init(size_t size)
 	return mem;
 }
 
-
-
-
-
 void* as2_malloc(allocator_t* mem, size_t size)
 { 
 //check if there is enough space to allocate the new chunk
