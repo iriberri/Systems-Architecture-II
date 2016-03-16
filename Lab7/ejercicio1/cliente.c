@@ -12,7 +12,6 @@
 int main(int argc, char **argv)
 {
 printf("----- Client Running -----\n");
-//Inicialización recursos
 
 	int sum;
 
@@ -36,7 +35,6 @@ printf("----- Client Running -----\n");
 	mqd_t queue = mq_open("/queue", O_WRONLY | O_CREAT, 0666, &attr);
 
 
-//Comprobación de apertura correcta
 if (queue==-1){
 	printf("Error while opening the client queue. %s\n", strerror(errno));
 	exit(-1);
@@ -61,13 +59,9 @@ if (servqueue==-1){
 }
 
 while(1){
-//Cliente rellena mensaje de petición
 peticion1.a=rand() % 20;
 peticion1.b=rand() % 9;
 strcpy(peticion1.q_name, "client");
-
-
-//Envía mensaje petición a servidor
 
 
 int send_result = mq_send(queue,(char *)&peticion1, sizeof(peticion), 1);
@@ -79,10 +73,6 @@ int send_result = mq_send(queue,(char *)&peticion1, sizeof(peticion), 1);
 		exit(-1);
 
 	}
-
-//Cliente espera recepción de respuesta de servidor
-
-
 
 printf("Sent. Waiting for message..\n");
 		respuesta recvmsg;
@@ -100,7 +90,6 @@ printf("Sent. Waiting for message..\n");
 
 sleep(1);
 }
-//Cierra colas cliente y servidor (close y unlink para el cliente)
 
 if (mq_unlink((char*) servqueue)==0){
 
@@ -125,11 +114,5 @@ if (mq_close(queue)==0){
  		exit(-1);
 
  }
-
-
-
-
-
-
 
 }
