@@ -29,7 +29,6 @@ int  headerSize = sizeof(header_t);
 
 allocator_t* as2_init(size_t size)
 { 
-
 	//mem is the complete chunk of memory
 	allocator_t *mem = (allocator_t*)malloc(size);
 	header_main.next = (mem+headerSize);
@@ -125,13 +124,10 @@ if (list!=NULL){
 
 
 
-
 void as2_destroy(allocator_t* mem)
 { 
 	free(list);
-
 	free(mem);
-
-	return ;
+	return;
 }
 
